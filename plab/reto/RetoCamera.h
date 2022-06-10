@@ -48,11 +48,11 @@ namespace plab
 
   public:
 
-    glm::vec3 iCameraPosition( ) override;
+    glm::vec3 iCameraPosition( ) const override;
 
-    glm::mat4x4 iCameraViewMatrix( ) override;
+    glm::mat4x4 iCameraViewMatrix( ) const override;
 
-    glm::mat4x4 iCameraViewProjectionMatrix( ) override;
+    glm::mat4x4 iCameraViewProjectionMatrix( ) const override;
 
   };
 }

@@ -30,17 +30,17 @@
 namespace plab
 {
 
-  glm::mat4x4 RetoCamera::iCameraViewProjectionMatrix( )
+  glm::mat4x4 RetoCamera::iCameraViewProjectionMatrix( ) const
   {
-    return floatPtrToMat4( camera( )->projectionViewMatrix( ));
+    return floatPtrToMat4( _camera->projectionViewMatrix( ));
   }
 
-  glm::mat4x4 RetoCamera::iCameraViewMatrix( )
+  glm::mat4x4 RetoCamera::iCameraViewMatrix( ) const
   {
-    return floatPtrToMat4( camera( )->viewMatrix( ));
+    return floatPtrToMat4( _camera->viewMatrix( ));
   }
 
-  glm::vec3 RetoCamera::iCameraPosition( )
+  glm::vec3 RetoCamera::iCameraPosition( ) const
   {
     return floatPtrToVec3( position( ).data( ));
   }

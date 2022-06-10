@@ -55,7 +55,7 @@ namespace plab
 
     ~CoverageRenderer( ) override = default;
 
-    void render( AbstractCluster& cluster ) override;
+    void render( const AbstractCluster& cluster ) override;
 
   };
 }

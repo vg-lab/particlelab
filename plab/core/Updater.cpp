@@ -24,16 +24,16 @@
 //
 
 #ifndef PLAB_SKIP_GLEW_INCLUDE
+
 #include <GL/glew.h>
+
 #endif
+
 #include <GL/gl.h>
 
 #include "Updater.h"
-
-
 #include <plab/core/AbstractCluster.h>
 #include <plab/core/Model.h>
-#include <iostream>
 
 namespace plab
 {
@@ -44,7 +44,7 @@ namespace plab
 
   }
 
-  void Updater::update( AbstractCluster& cluster )
+  void Updater::update( const AbstractCluster& cluster )
   {
     glUseProgram( _program );
     glBindBufferBase( GL_SHADER_STORAGE_BUFFER , 0 , cluster.getDataBuffer( ));

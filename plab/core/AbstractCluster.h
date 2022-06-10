@@ -146,17 +146,17 @@ namespace plab
     /**
      * Binds the underlying VAO.
      */
-    void bindVAO( );
+    void bindVAO( ) const;
 
     /**
      * Updates the particles using this cluster's updater.
      */
-    void update( );
+    void update( ) const;
 
     /**
      * Renders the particles using this cluster's model and renderer.
      */
-    void render( );
+    void render( ) const;
 
     /**
      * Clears the data buffer and resizes it
@@ -173,13 +173,13 @@ namespace plab
      * be marked as unavailable. You mustn't
      * use them after this method's invocation.
      */
-    void unmapData( );
+    void unmapData( ) const;
 
   protected:
 
     void setParticlesRaw( void* data , GLsizeiptr amount );
 
-    void* mapDataRaw( );
+    void* mapDataRaw( ) const;
 
   };
 

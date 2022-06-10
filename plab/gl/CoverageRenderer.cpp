@@ -24,8 +24,11 @@
 //
 
 #ifndef PLAB_SKIP_GLEW_INCLUDE
+
 #include <GL/glew.h>
+
 #endif
+
 #include <GL/gl.h>
 
 #include "CoverageRenderer.h"
@@ -42,7 +45,7 @@ namespace plab
 
   }
 
-  void CoverageRenderer::render( AbstractCluster& cluster )
+  void CoverageRenderer::render( const AbstractCluster& cluster )
   {
     glUseProgram( _program );
 

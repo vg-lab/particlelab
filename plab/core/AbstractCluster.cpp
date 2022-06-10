@@ -125,12 +125,12 @@ namespace plab
     _size = particles;
   }
 
-  void AbstractCluster::bindVAO( )
+  void AbstractCluster::bindVAO( ) const
   {
     glBindVertexArray( _vaoBuffer );
   }
 
-  void AbstractCluster::update( )
+  void AbstractCluster::update( ) const
   {
     if ( _updater != nullptr )
     {
@@ -138,7 +138,7 @@ namespace plab
     }
   }
 
-  void AbstractCluster::render( )
+  void AbstractCluster::render( ) const
   {
     if ( _renderer != nullptr )
     {
@@ -161,13 +161,13 @@ namespace plab
     return _dataBuffer;
   }
 
-  void* AbstractCluster::mapDataRaw( )
+  void* AbstractCluster::mapDataRaw( ) const
   {
     glBindBuffer( GL_ARRAY_BUFFER , _dataBuffer );
     return glMapBuffer( GL_ARRAY_BUFFER , GL_READ_WRITE );
   }
 
-  void AbstractCluster::unmapData( )
+  void AbstractCluster::unmapData( ) const
   {
     glBindBuffer( GL_ARRAY_BUFFER , _dataBuffer );
     glUnmapBuffer( _dataBuffer );

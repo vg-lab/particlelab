@@ -70,7 +70,7 @@ namespace plab
      * Updates the cluster.
      * @param cluster the cluster to update.
      */
-    virtual void update( AbstractCluster& cluster );
+    virtual void update( const AbstractCluster& cluster );
 
   };
 }

@@ -28,6 +28,12 @@
 
 #include <plab/api.h>
 
+#ifndef PLAB_SKIP_GLEW_INCLUDE
+
+#include <GL/glew.h>
+
+#endif
+
 #include <GL/gl.h>
 
 
@@ -69,7 +75,7 @@ namespace plab
      * Renders the given cluster.
      * @param cluster the cluster to render.
      */
-    virtual void render( AbstractCluster& cluster ) = 0;
+    virtual void render( const AbstractCluster& cluster ) = 0;
   };
 }
 

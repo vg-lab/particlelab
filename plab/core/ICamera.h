@@ -60,7 +60,7 @@ namespace plab
      *
      * @return Current camera position.
      */
-    virtual glm::vec3 iCameraPosition( ) = 0;
+    virtual glm::vec3 iCameraPosition( ) const = 0;
 
     /*! \brief This method returns the current view matrix.
      *
@@ -69,7 +69,7 @@ namespace plab
      *
      * @return Current view matrix.
      */
-    virtual glm::mat4x4 iCameraViewMatrix( ) = 0;
+    virtual glm::mat4x4 iCameraViewMatrix( ) const = 0;
 
     /*! \brief This method returns the current view projection matrix.
      *
@@ -77,7 +77,7 @@ namespace plab
      *
      * @return Current view projection matrix.
      */
-    virtual glm::mat4x4 iCameraViewProjectionMatrix( ) = 0;
+    virtual glm::mat4x4 iCameraViewProjectionMatrix( ) const = 0;
   };
 }
 
