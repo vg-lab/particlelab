@@ -28,14 +28,6 @@
 
 #include <plab/api.h>
 
-#ifndef PLAB_SKIP_GLEW_INCLUDE
-
-#include <GL/glew.h>
-
-#endif
-
-#include <GL/gl.h>
-
 #include <map>
 
 namespace plab
@@ -47,8 +39,8 @@ namespace plab
   class PLAB_API UniformCache
   {
 
-    GLuint _program;
-    std::map< std::string , GLint > _cache;
+    uint32_t _program;
+    std::map< std::string , int32_t > _cache;
 
   public:
 
@@ -56,14 +48,14 @@ namespace plab
      * Creates a new cache.
      * @param program the shader program used by this cache.
      */
-    explicit UniformCache( GLuint program );
+    explicit UniformCache( uint32_t program );
 
     /**
      * Returns the location of the uniform with the given name.
      * @param name the name.
      * @return the location or -1 if not found.
      */
-    GLint getLocation( const std::string& name );
+    int32_t getLocation( const std::string& name );
 
   };
 }

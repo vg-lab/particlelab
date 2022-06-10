@@ -26,9 +26,13 @@
 #ifndef PLAB_ABSTRACTCLUSTER_H
 #define PLAB_ABSTRACTCLUSTER_H
 
-#include <plab/api.h>
+#ifndef PLAB_SKIP_GLEW_INCLUDE
 
-#include <GL/gl.h>
+#include <GL/glew.h>
+
+#endif
+
+#include <plab/api.h>
 
 #include <memory>
 
@@ -54,9 +58,9 @@ namespace plab
     std::shared_ptr< Model > _model;
     std::shared_ptr< Updater > _updater;
 
-    GLuint _vaoBuffer;
-    GLuint _vertexBuffer;
-    GLuint _dataBuffer;
+    uint32_t _vaoBuffer;
+    uint32_t _vertexBuffer;
+    uint32_t _dataBuffer;
 
     uint32_t _size;
 
@@ -80,19 +84,19 @@ namespace plab
      * Returns the identifier of the underlying VAO.
      * @return the identifier of the VAO.
      */
-    GLuint getVaoBuffer( ) const;
+    uint32_t getVaoBuffer( ) const;
 
     /**
      * Returns the identifier of the underlying vertex buffer.
      * @return the identifier of the vertex buffer.
      */
-    GLuint getVertexBuffer( ) const;
+    uint32_t getVertexBuffer( ) const;
 
     /**
      * Returns the identifier of the underlying data buffer.
      * @return the identifier of the data buffer.
      */
-    GLuint getDataBuffer( ) const;
+    uint32_t getDataBuffer( ) const;
 
     /**
      * Returns the render used by this cluster.
@@ -164,7 +168,7 @@ namespace plab
      *
      * @param particles the amount of particles to hold.
      */
-    void allocateBuffer( GLsizeiptr particles );
+    void allocateBuffer( uint64_t particles );
 
     /**
      * Unmaps the data buffer.
@@ -177,7 +181,7 @@ namespace plab
 
   protected:
 
-    void setParticlesRaw( void* data , GLsizeiptr amount );
+    void setParticlesRaw( void* data , uint64_t amount );
 
     void* mapDataRaw( ) const;
 

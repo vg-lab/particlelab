@@ -23,14 +23,11 @@
 // Created by gaeqs on 7/06/22.
 //
 
-#ifndef PLAB_SKIP_GLEW_INCLUDE
-#include <GL/glew.h>
-#endif
-
 #include "AbstractCluster.h"
 
 #include "Renderer.h"
 #include "Updater.h"
+#include <iostream>
 
 namespace plab
 {
@@ -110,17 +107,19 @@ namespace plab
     return _size;
   }
 
-  void AbstractCluster::setParticlesRaw( void* data , GLsizeiptr amount )
+
+  void AbstractCluster::setParticlesRaw( void* data , uint64_t amount )
   {
-    auto size = amount * static_cast<GLsizeiptr>(particleSize( ));
+    auto size = amount * static_cast<uint64_t>(particleSize( ));
     glBindBuffer( GL_ARRAY_BUFFER , _dataBuffer );
     glBufferData( GL_ARRAY_BUFFER , size , data , GL_DYNAMIC_COPY );
     _size = amount;
   }
 
-  void AbstractCluster::allocateBuffer( GLsizeiptr particles )
+  void AbstractCluster::allocateBuffer( uint64_t particles )
   {
-    auto size = particles * static_cast<GLsizeiptr>(particleSize( ));
+    auto size = particles * static_cast<uint64_t>(particleSize( ));
+
     glBufferData( GL_ARRAY_BUFFER , size , nullptr , GL_DYNAMIC_COPY );
     _size = particles;
   }

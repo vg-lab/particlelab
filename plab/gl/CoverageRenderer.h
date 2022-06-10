@@ -51,7 +51,7 @@ namespace plab
      * Creates the coverage renderer.
      * @param program the shader program to use.
      */
-    explicit CoverageRenderer( GLuint program );
+    explicit CoverageRenderer( uint32_t program );
 
     ~CoverageRenderer( ) override = default;
 

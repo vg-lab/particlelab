@@ -29,15 +29,13 @@
 
 #endif
 
-#include <GL/gl.h>
-
 #include "Updater.h"
 #include <plab/core/AbstractCluster.h>
 #include <plab/core/Model.h>
 
 namespace plab
 {
-  Updater::Updater( GLuint program )
+  Updater::Updater( uint32_t program )
     : _program( program )
     , _cache( program )
   {

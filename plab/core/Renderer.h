@@ -34,9 +34,6 @@
 
 #endif
 
-#include <GL/gl.h>
-
-
 namespace plab
 {
   class AbstractCluster;
@@ -54,7 +51,7 @@ namespace plab
   {
 
   protected:
-    GLuint _program;
+    uint32_t _program;
 
   public:
 
@@ -64,7 +61,7 @@ namespace plab
      * Creates the renderer.
      * @param program the identifier of the shader program to use.
      */
-    explicit Renderer( GLuint program );
+    explicit Renderer( uint32_t program );
 
     /**
      * The destructor of the renderer.

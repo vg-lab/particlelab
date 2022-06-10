@@ -24,23 +24,23 @@
 //
 
 #ifndef PLAB_SKIP_GLEW_INCLUDE
-#include <GL/glew.h>
-#endif
 
-#include <GL/gl.h>
+#include <GL/glew.h>
+
+#endif
 
 #include "UniformCache.h"
 
 namespace plab
 {
-  UniformCache::UniformCache( GLuint program )
+  UniformCache::UniformCache( uint32_t program )
     : _program( program )
     , _cache( )
   {
 
   }
 
-  GLint UniformCache::getLocation( const std::string& name )
+  int32_t UniformCache::getLocation( const std::string& name )
   {
     auto result = _cache.find( name );
     if ( result == _cache.end( ))

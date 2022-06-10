@@ -30,9 +30,6 @@
 #include <plab/api.h>
 #include "UniformCache.h"
 
-#include <GL/gl.h>
-
-
 namespace plab
 {
 
@@ -50,7 +47,7 @@ namespace plab
 
   protected:
 
-    GLuint _program;
+    uint32_t _program;
     UniformCache _cache;
 
   public:
@@ -59,7 +56,7 @@ namespace plab
      * Creates the updater.
      * @param program the identifier of the computer shader program.
      */
-    explicit Updater( GLuint program );
+    explicit Updater( uint32_t program );
 
     /**
      * The destructor of the updater.

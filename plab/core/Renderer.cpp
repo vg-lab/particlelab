@@ -27,7 +27,7 @@
 
 namespace plab
 {
-  Renderer::Renderer( GLuint program )
+  Renderer::Renderer( uint32_t program )
     : _program( program )
   {
   }

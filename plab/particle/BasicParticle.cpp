@@ -31,9 +31,6 @@
 
 #endif
 
-
-#include <GL/gl.h>
-
 void BasicParticle::enableVAOAttributes( )
 {
   glEnableVertexAttribArray( 1 );

@@ -29,8 +29,6 @@
 
 #endif
 
-#include <GL/gl.h>
-
 #include "CoverageRenderer.h"
 
 #include <plab/core/AbstractCluster.h>
@@ -38,7 +36,7 @@
 
 namespace plab
 {
-  CoverageRenderer::CoverageRenderer( GLuint program )
+  CoverageRenderer::CoverageRenderer( uint32_t program )
     : Renderer( program )
     , cache( program )
   {

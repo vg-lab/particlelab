@@ -29,9 +29,6 @@
 
 #endif
 
-
-#include <GL/gl.h>
-
 #include "Particle.h"
 
 void Particle::enableVAOAttributes( )
