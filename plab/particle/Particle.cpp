@@ -23,7 +23,15 @@
 // Created by gaeqs on 7/06/22.
 //
 
+#ifndef PLAB_SKIP_GLEW_INCLUDE
+
 #include <GL/glew.h>
+
+#endif
+
+
+#include <GL/gl.h>
+
 #include "Particle.h"
 
 void Particle::enableVAOAttributes( )

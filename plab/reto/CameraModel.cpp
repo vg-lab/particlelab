@@ -23,14 +23,17 @@
 // Created by gaeqs on 8/06/22.
 //
 
+#ifndef PLAB_SKIP_GLEW_INCLUDE
+#include <GL/glew.h>
+#endif
+#include <GL/gl.h>
+
 #include "CameraModel.h"
 
 #include <utility>
 #include "plab/core/UniformCache.h"
 #include "plab/core/ICamera.h"
 
-#include <GL/glew.h>
-#include <GL/gl.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>

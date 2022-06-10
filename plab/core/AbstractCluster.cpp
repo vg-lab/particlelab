@@ -23,6 +23,10 @@
 // Created by gaeqs on 7/06/22.
 //
 
+#ifndef PLAB_SKIP_GLEW_INCLUDE
+#include <GL/glew.h>
+#endif
+
 #include "AbstractCluster.h"
 
 #include "Renderer.h"

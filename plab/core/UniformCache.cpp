@@ -23,6 +23,12 @@
 // Created by gaeqs on 8/06/22.
 //
 
+#ifndef PLAB_SKIP_GLEW_INCLUDE
+#include <GL/glew.h>
+#endif
+
+#include <GL/gl.h>
+
 #include "UniformCache.h"
 
 namespace plab

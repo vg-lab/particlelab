@@ -30,7 +30,6 @@
 #include <plab/api.h>
 #include "UniformCache.h"
 
-#include <GL/glew.h>
 #include <GL/gl.h>
 
 
