@@ -211,8 +211,9 @@ int main( int argc , char* argv[] )
 
   auto updater = std::make_shared< plab::Updater >( computeProgram.program( ));
 
-  cluster = std::make_shared< plab::Cluster < Particle>>
-  ( );
+  cluster = std::make_shared< plab::Cluster < Particle>>( );
+  glBindVertexArray(0);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
   cluster->setRenderer( renderer );
   cluster->setModel( model );
   cluster->setUpdater( updater );

@@ -27,7 +27,6 @@
 
 #include "Renderer.h"
 #include "Updater.h"
-#include <iostream>
 
 namespace plab
 {
@@ -119,7 +118,7 @@ namespace plab
   void AbstractCluster::allocateBuffer( uint64_t particles )
   {
     auto size = particles * static_cast<uint64_t>(particleSize( ));
-
+    glBindBuffer( GL_ARRAY_BUFFER , _dataBuffer );
     glBufferData( GL_ARRAY_BUFFER , size , nullptr , GL_DYNAMIC_COPY );
     _size = particles;
   }
@@ -169,6 +168,6 @@ namespace plab
   void AbstractCluster::unmapData( ) const
   {
     glBindBuffer( GL_ARRAY_BUFFER , _dataBuffer );
-    glUnmapBuffer( _dataBuffer );
+    glUnmapBuffer( GL_ARRAY_BUFFER );
   }
 }
