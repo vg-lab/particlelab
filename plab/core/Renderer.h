@@ -28,6 +28,8 @@
 
 #include <plab/api.h>
 
+#include <cstdint>
+
 #ifndef PLAB_SKIP_GLEW_INCLUDE
 
 #include <GL/glew.h>

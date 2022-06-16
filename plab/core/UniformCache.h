@@ -29,6 +29,7 @@
 #include <plab/api.h>
 
 #include <map>
+#include <cstdint>
 
 namespace plab
 {

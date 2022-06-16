@@ -35,6 +35,7 @@
 #include <plab/api.h>
 
 #include <memory>
+#include <cstdint>
 
 namespace plab
 {
