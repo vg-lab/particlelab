@@ -30,6 +30,8 @@
 #include <plab/api.h>
 #include "UniformCache.h"
 
+#include <cstdint>
+
 namespace plab
 {
 

@@ -101,6 +101,7 @@ namespace plab
     _updater = updater;
   }
 
+
   uint32_t AbstractCluster::size( ) const
   {
     return _size;
