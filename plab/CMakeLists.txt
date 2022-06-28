@@ -1,8 +1,6 @@
 source_group(\\ FILES CMakeLists.txt)
 
-set(PLAB_PUBLIC_HEADERS)
-
-set(PLAB_HEADERS
+set(PLAB_PUBLIC_HEADERS
         core/AbstractCluster.h
         core/Cluster.h
         core/Renderer.h
@@ -19,6 +17,8 @@ set(PLAB_HEADERS
         reto/CameraModel.h
         reto/RetoCamera.h
         )
+
+set(PLAB_HEADERS)
 
 set(PLAB_SOURCES
         core/AbstractCluster.cpp
