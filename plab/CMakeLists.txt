@@ -13,6 +13,7 @@ set(PLAB_PUBLIC_HEADERS
         particle/Particle.h
 
         gl/CoverageRenderer.h
+        gl/SimpleRenderer.h
 
         reto/CameraModel.h
         reto/RetoCamera.h
@@ -30,6 +31,7 @@ set(PLAB_SOURCES
         particle/Particle.cpp
 
         gl/CoverageRenderer.cpp
+        gl/SimpleRenderer.cpp
 
         reto/CameraModel.cpp
         reto/RetoCamera.cpp
