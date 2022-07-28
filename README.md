@@ -36,7 +36,7 @@ and Windows 10/11 (Visual Studio 2022 Win64).
 The following steps should be enough to build it:
 
 ```bash
-git clone https://gitlab.gmrv.es/g.rial/particlelab.git particlelab
+git clone https://github.com/vg-lab/particlelab.git particlelab
 mkdir particlelab/build && cd particlelab/build
 cmake .. -DCMAKE_BUILD_TYPE=Release -DPLAB_WITH_EXAMPLES=ON
 make
