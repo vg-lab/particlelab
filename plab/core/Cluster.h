@@ -46,7 +46,7 @@ namespace plab
    * @tparam P the type of particle.
    */
   template< class P = Particle >
-  class PLAB_API Cluster : public AbstractCluster
+  class Cluster : public AbstractCluster
   {
 
   public:

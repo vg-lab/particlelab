@@ -30,6 +30,7 @@
 
 #include <map>
 #include <cstdint>
+#include <string>
 
 namespace plab
 {

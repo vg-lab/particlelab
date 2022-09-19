@@ -7,7 +7,7 @@
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(plab VERSION 0.1.2)
+project(plab VERSION 0.1.3)
 set(plab_VERSION_ABI 6)
 
 # Disable in source building

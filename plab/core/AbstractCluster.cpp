@@ -107,7 +107,6 @@ namespace plab
     return _size;
   }
 
-
   void AbstractCluster::setParticlesRaw( void* data , uint64_t amount )
   {
     auto size = amount * static_cast<uint64_t>(particleSize( ));
