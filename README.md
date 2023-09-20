@@ -2,7 +2,7 @@
 (c) 2022-2022. VG-Lab / URJC
 
 www.vg-lab.es
-gmrv@gmrv.es
+vg-lab@vg-lab.es
 
 ## Introduction
 
