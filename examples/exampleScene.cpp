@@ -8,11 +8,13 @@
 #include <GL/freeglut.h>
 
 #include <iostream>
+#include <chrono>
 #include "plab/core/Cluster.h"
 #include "plab/core/Updater.h"
 #include "plab/reto/RetoCamera.h"
 #include "plab/gl/CoverageRenderer.h"
 #include "plab/reto/CameraModel.h"
+#include <reto/ShaderProgram.h>
 
 const static std::string plabVertexShader = R"(#version 330
 #extension GL_ARB_separate_shader_objects: enable

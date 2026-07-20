@@ -26,7 +26,7 @@
 #ifndef PLAB_MODEL_H
 #define PLAB_MODEL_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 namespace plab
 {
@@ -41,7 +41,7 @@ namespace plab
    *
    * Several clusters can share the same model.
    */
-  class PLAB_API Model
+  class PLAB_EXPORT Model
   {
 
     bool _accumulativeMode;

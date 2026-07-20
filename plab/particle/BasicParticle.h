@@ -26,14 +26,14 @@
 #ifndef PLAB_BASICPARTICLE_H
 #define PLAB_BASICPARTICLE_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 #include <glm/vec3.hpp>
 
 /**
  * A basic particle, containing only a position.
  */
-struct PLAB_API BasicParticle
+struct PLAB_EXPORT BasicParticle
 {
   glm::vec3 position;
 

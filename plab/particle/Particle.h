@@ -26,7 +26,7 @@
 #ifndef PLAB_PARTICLE_H
 #define PLAB_PARTICLE_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
@@ -34,7 +34,7 @@
 /**
  * A particle that defines a position, a color, a life and a size.
  */
-struct PLAB_API Particle
+struct PLAB_EXPORT Particle
 {
   glm::vec3 position;
   glm::vec4 color;

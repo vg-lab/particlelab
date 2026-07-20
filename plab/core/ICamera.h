@@ -22,7 +22,7 @@
 #ifndef __PLAB__ICAMERA__
 #define __PLAB__ICAMERA__
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 #include <glm/fwd.hpp>
 
@@ -35,7 +35,7 @@ namespace plab
    * implementations by simply implementing its methods.
    *
    */
-  class PLAB_API ICamera
+  class PLAB_EXPORT ICamera
   {
   public:
 

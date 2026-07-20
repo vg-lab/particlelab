@@ -27,7 +27,7 @@
 #define PLAB_COVERAGERENDERER_H
 
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 #include <plab/core/Renderer.h>
 #include <plab/core/UniformCache.h>
 
@@ -40,7 +40,7 @@ namespace plab
    *
    * This renderer requires a multisampling setup to work.
    */
-  class PLAB_API CoverageRenderer : public Renderer
+  class PLAB_EXPORT CoverageRenderer : public Renderer
   {
 
     UniformCache cache;

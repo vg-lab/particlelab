@@ -1,105 +1,154 @@
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-#
-#   Plab
-#   2014-2022 (c) VG-Lab / Universidad Rey Juan Carlos
-#   vg-lab@vg-lab.es
-#   www.vg-lab.es
-#
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
-project(plab VERSION 0.1.3)
-set(plab_VERSION_ABI 6)
+cmake_minimum_required(VERSION 3.25)
 
-# Disable in source building
-if ("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
-    message(FATAL "no in source building allowed.")
-endif ()
+project(plab
+  VERSION 0.1.3
+  LANGUAGES CXX
+  DESCRIPTION "Particle Framework"
+)
+string(TOLOWER ${PROJECT_NAME} PROJECT_NAME_LOWER)
+string(TOUPPER ${PROJECT_NAME} PROJECT_NAME_UPPER)
 
-list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMake
-        ${CMAKE_SOURCE_DIR}/CMake/common)
+# Prevent in-source builds
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+  message(FATAL_ERROR "In-source builds are not allowed. Please create a separate build directory.")
+endif()
 
-if (NOT EXISTS ${CMAKE_SOURCE_DIR}/CMake/common/Common.cmake)
-    message(FATAL_ERROR "CMake/common missing, run: git submodule update --init")
-endif ()
+# Set default build type if not specified
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
+endif()
 
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Debug)
-endif (NOT CMAKE_BUILD_TYPE)
+# Include custom modules
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
-if (CMAKE_BUILD_TYPE MATCHES "Debug")
-    add_definitions(-DDEBUG)
-endif ()
+# Options
+option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
+option(BUILD_DOCS "Build documentation" ON)
+option(PLAB_WITH_EXAMPLES "Build examples" ON)
+option(PLAB_WITH_TESTS "Build tests" ON)
+option(PLAB_OPTIONALS_AS_REQUIRED "Force optional dependencies as required" OFF)
 
-include(GitExternal)
+option(PLAB_SKIP_GLEW_INCLUDE "" OFF)
 
-set(PLAB_DESCRIPTION "PLAB - Particle Framework")
-set(COMMON_PROJECT_DOMAIN vg-lab.es)
+# Dependencies
+find_package(OpenGL REQUIRED)
+find_package(GLEW REQUIRED)
+find_package(glm REQUIRED)
 
-option(PLAB_WITH_OPENSCENEGRAPH "PLAB_WITH_OPENSCENEGRAPH" OFF)
-#option( PLAB_WITH_CUDA "PLAB_WITH_CUDA" OFF )
-option(MODERN_GPU_ARCH "GPU_ARCH" ON)
-option(PLAB_WITH_EXAMPLES "PLAB_WITH_EXAMPLES" OFF)
-option(PLAB_WITH_LOGGING "PLAB_WITH_LOGGING" OFF)
-option(PLAB_PARALLEL "PLAB_PARALLEL" ON)
+include(FetchContent)
+FetchContent_Declare(
+    ReTo
+    GIT_REPOSITORY https://github.com/vg-lab/ReTo.git
+    GIT_SHALLOW ON
+    FIND_PACKAGE_ARGS
+)
+FetchContent_MakeAvailable(ReTo)
 
-if (PLAB_WITH_LOGGING)
-    add_definitions(-DPLAB_WITH_LOGGING)
-endif ()
+# Optional dependencies
+set(PLAB_OPTS_FIND_ARGS "")
+if(PLAB_OPTIONALS_AS_REQUIRED)
+  set(PLAB_OPTS_FIND_ARGS REQUIRED)
+endif()
 
-include(Common)
+# find_package(GLUT ${PLAB_OPTS_FIND_ARGS} QUIET)
 
-#common_find_package( nvidiaOpenGL SYSTEM )
-common_find_package(OpenGL REQUIRED SYSTEM)
-common_find_package(GLEW REQUIRED SYSTEM)
-common_find_package(GLM REQUIRED SYSTEM)
-common_find_package(GLUT SYSTEM)
-common_find_package(Boost REQUIRED)
-common_find_package(Eigen3 SYSTEM)
-common_find_package(ReTo REQUIRED)
+# Definitions
+# option(PLAB_USE_Foo "" ${Foo_FOUND})
 
-list(APPEND PLAB_DEPENDENT_LIBRARIES ReTo OpenGL GLEW GLM Boost)
+# Add subdirectories
+add_subdirectory(${PROJECT_NAME})
 
-if (GLUT_FOUND)
-    list(APPEND PLAB_DEPENDENT_LIBRARIES GLUT)
-endif ()
+# Don't build examples when others include the library
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND PLAB_WITH_EXAMPLES)
+  add_subdirectory(examples)
+endif()
 
-if (PLAB_PARALLEL)
-    common_find_package(OpenMP)
-    if (OPENMP_FOUND)
-        list(APPEND PLAB_DEPENDENT_LIBRARIES OpenMP)
-    endif ()
-endif ()
+# Define installation directory variables
+include(GNUInstallDirs)
 
+# Create an export
+install(TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}Targets
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME_LOWER}
+  FILE_SET public_headers DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+  FILE_SET public_headers_generated DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
 
-if (PLAB_WITH_OPENSCENEGRAPH)
-    common_find_package(OpenSceneGraph 3.2 EXACT COMPONENTS
-            osgViewer osgGA osgDB osgUtil osgQt SYSTEM)
-    if (OPENSCENEGRAPH_FOUND)
-        list(APPEND PLAB_DEPENDENT_LIBRARIES OpenSceneGraph)
-    endif ()
-endif ()
+# Install the project targets file
+install(EXPORT ${PROJECT_NAME}Targets
+  FILE ${PROJECT_NAME_LOWER}-targets.cmake
+  NAMESPACE ${PROJECT_NAME}::
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME_LOWER}
+)
 
-if (PLAB_WITH_CUDA)
-    include(CudaCommonLibrary)
-    find_package(CUDA REQUIRED)
-    common_find_package(CUDA SYSTEM REQUIRED)
-    if (CUDA_FOUND)
-        list(APPEND PLAB_DEPENDENT_LIBRARIES CUDA)
+# Include the CMake module that provides helpers for creating package config files
+include(CMakePackageConfigHelpers)
 
-        common_find_package(CUDAThrust SYSTEM)
-        if (CUDAThrust_FOUND)
-            list(APPEND PLAB_DEPENDENT_LIBRARIES CUDAThrust)
-        endif ()
-    endif ()
-endif ()
+# Generate the project-specific cmake config file
+configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/project-config.cmake.in
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config.cmake"
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME_LOWER}
+)
 
-common_find_package_post()
+# Generate the project-specific cmake config version file
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config-version.cmake"
+  VERSION ${PROJECT_VERSION}
+  COMPATIBILITY SameMajorVersion
+)
 
-set(PLAB_LIBRARY_BASE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/plab)
+# Install the cmake config files
+install(FILES
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME_LOWER}-config-version.cmake"
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME_LOWER}
+)
 
-add_subdirectory(plab)
+# Install repo data
+install(FILES
+  "${CMAKE_CURRENT_SOURCE_DIR}/README.md"
+  "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt"
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME_LOWER}
+)
 
-add_subdirectory(examples)
+# Allow the configured project-config.cmake in the build directory to be used by
+# other projects, without needing it to be installed
+export(EXPORT ${PROJECT_NAME}Targets
+  NAMESPACE ${PROJECT_NAME}::
+  FILE ${PROJECT_NAME_LOWER}-targets.cmake
+)
 
-include(CPackConfig)
-include(DoxygenRule)
+# Generate documentation
+find_package(Doxygen)
+if(DOXYGEN_FOUND AND BUILD_DOCS)
+  set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR}/docs_doxygen)
+  set(DOXYFILE_IN ${PROJECT_SOURCE_DIR}/cmake/Doxyfile.in)
+  set(DOXYFILE_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+  configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
+
+  doxygen_add_docs(
+    ${PROJECT_NAME}_doxygen
+    CONFIG_FILE ${DOXYFILE_OUT}
+  )
+
+  install(DIRECTORY
+    ${DOXYGEN_OUTPUT_DIR}/html
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}
+    COMPONENT ${PROJECT_NAME}_documentation
+    OPTIONAL
+  )
+endif()
+
+# Packaging
+set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
+set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
+set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE.txt")
+set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
+set(CPACK_SOURCE_GENERATOR "TGZ")
+include(CPack)

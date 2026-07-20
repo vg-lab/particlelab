@@ -26,7 +26,7 @@
 #ifndef PLAB_RENDERER_H
 #define PLAB_RENDERER_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 #include <cstdint>
 
@@ -49,7 +49,7 @@ namespace plab
    *
    * Several clusters can share the same renderer.
    */
-  class PLAB_API Renderer
+  class PLAB_EXPORT Renderer
   {
 
   protected:

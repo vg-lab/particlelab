@@ -27,7 +27,7 @@
 #define PLAB_SimpleRenderer_H
 
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 #include <plab/core/Renderer.h>
 #include <plab/core/UniformCache.h>
 
@@ -39,7 +39,7 @@ namespace plab
    * leaving all the configuration to the external
    * application.
    */
-  class PLAB_API SimpleRenderer : public Renderer
+  class PLAB_EXPORT SimpleRenderer : public Renderer
   {
 
     UniformCache cache;

@@ -26,7 +26,7 @@
 #ifndef PLAB_CAMERAMODEL_H
 #define PLAB_CAMERAMODEL_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 #include <plab/core/Model.h>
 
 #include <memory>
@@ -39,7 +39,7 @@ namespace plab
    * A cluster model that uploads a camera's information
    * into the render shader.
    */
-  class PLAB_API CameraModel : public Model
+  class PLAB_EXPORT CameraModel : public Model
   {
 
     std::shared_ptr< plab::ICamera > _camera;

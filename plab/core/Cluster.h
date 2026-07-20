@@ -28,7 +28,7 @@
 
 #include "AbstractCluster.h"
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 #include <plab/particle/Particle.h>
 
 #include <vector>

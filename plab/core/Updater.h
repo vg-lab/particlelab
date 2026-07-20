@@ -27,7 +27,7 @@
 #define PLAB_UPDATER_H
 
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 #include "UniformCache.h"
 
 #include <cstdint>
@@ -44,7 +44,7 @@ namespace plab
    *
    * Several clusters can share the same updater.
    */
-  class PLAB_API Updater
+  class PLAB_EXPORT Updater
   {
 
   protected:

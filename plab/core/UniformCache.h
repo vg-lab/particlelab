@@ -26,7 +26,7 @@
 #ifndef PLAB_UNIFORMCACHE_H
 #define PLAB_UNIFORMCACHE_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 #include <map>
 #include <cstdint>
@@ -38,7 +38,7 @@ namespace plab
   /**
    * Util class used to cache the uniforms' locations of a shader program.
    */
-  class PLAB_API UniformCache
+  class PLAB_EXPORT UniformCache
   {
 
     uint32_t _program;

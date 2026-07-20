@@ -26,7 +26,7 @@
 #ifndef PLAB_RETOCAMERA_H
 #define PLAB_RETOCAMERA_H
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 #include <plab/core/ICamera.h>
 
 #include <reto/reto.h>
@@ -38,7 +38,7 @@ namespace plab
    * This class merges the reto's OrbitalCameraController
    * with this API ICamera.
    */
-  class PLAB_API RetoCamera
+  class PLAB_EXPORT RetoCamera
     : public ICamera , public reto::OrbitalCameraController
   {
 

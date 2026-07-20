@@ -32,7 +32,7 @@
 
 #endif
 
-#include <plab/api.h>
+#include <plab/plab_export.h>
 
 #include <memory>
 #include <cstdint>
@@ -52,7 +52,7 @@ namespace plab
    * It is not recommended to use this implementation.
    * Use the Cluster class instead.
    */
-  class PLAB_API AbstractCluster
+  class PLAB_EXPORT AbstractCluster
   {
 
     std::shared_ptr< Renderer > _renderer;
