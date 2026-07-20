@@ -6,3 +6,6 @@ Debug*
 .idea/
 ReTo/
 cmake-build-*/
+
+build
+.cache
